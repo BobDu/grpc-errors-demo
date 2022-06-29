@@ -24,6 +24,7 @@ py34/
 # Node installation output
 node_modules
 src/node/extension_binary/
+package-lock.json
 
 # gcov coverage data
 reports

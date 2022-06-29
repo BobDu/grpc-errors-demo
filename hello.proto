@@ -11,6 +11,8 @@ service HelloService {
     // Strict Version responds only to requests which have `Name` length
     // less than 10 characters
     rpc SayHelloStrict(HelloReq) returns (HelloResp) {};
+
+    rpc SayHelloCustomErr(HelloReq) returns (HelloResp) {};
 }
 
 message HelloReq {
@@ -19,4 +21,10 @@ message HelloReq {
 
 message HelloResp {
     string Result = 1;
+}
+
+// my custom grpc error code
+enum ErrorCode {
+    OK = 0;
+    CUSTOM_ERROR = 88;
 }

@@ -1,7 +1,10 @@
 const PROTO_PATH = __dirname + '/../hello.proto';
 
-var grpc = require('grpc');
-var api = grpc.load(PROTO_PATH).hello;
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader');
+
+const packageDefinition = protoLoader.loadSync(PROTO_PATH);
+const api = grpc.loadPackageDefinition(packageDefinition).hello;
 
 function main() {
   var client = new api.HelloService('localhost:50051', grpc.credentials.createInsecure());

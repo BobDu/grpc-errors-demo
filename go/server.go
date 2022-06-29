@@ -30,6 +30,10 @@ func (s *HelloServer) SayHelloStrict(ctx context.Context, req *api.HelloReq) (*a
 	return &api.HelloResp{Result: fmt.Sprintf("Hey, %s!", req.GetName())}, nil
 }
 
+func (s *HelloServer) SayHelloCustomErr(ctx context.Context, req *api.HelloReq) (*api.HelloResp, error) {
+	return nil, status.Errorf(codes.Code(api.ErrorCode_CUSTOM_ERROR.Number()), api.ErrorCode_CUSTOM_ERROR.String())
+}
+
 func Serve() {
 	addr := fmt.Sprintf(":%d", 50051)
 	conn, err := net.Listen("tcp", addr)
